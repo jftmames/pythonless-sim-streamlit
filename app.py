@@ -26,25 +26,30 @@ def render_state_view(state):
     col1, col2, col3 = st.columns(3)
     with col1:
         st.subheader("Variables")
-        st.json(globals_state) if globals_state else st.write("—")
+        if globals_state:
+            st.json(globals_state)
+        else:
+            st.write("—")
     with col2:
         st.subheader("Pila de llamadas")
         st.write("—")
     with col3:
         st.subheader("IO / Logs")
-        st.json(io_state) if io_state else st.write("—")
+        if io_state:
+            st.json(io_state)
+        else:
+            st.write("—")
 
-# --- FUNCIÓN CORREGIDA ---
 def render_explain_cards(step):
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.info(f"**Qué hace:** {step['what']}") # Sin \\n
+        st.info(f"**Qué hace:** {step['what']}")
     with col2:
-        st.success(f"**Por qué importa:** {step['why']}") # Sin \\n
+        st.success(f"**Por qué importa:** {step['why']}")
     with col3:
-        st.warning(f"**Aplicación en Datos:** {step['appData']}") # Sin \\n
+        st.warning(f"**Aplicación en Datos:** {step['appData']}")
     with col4:
-        st.error(f"**Aplicación en Derecho:** {step['appLaw']}") # Sin \\n
+        st.error(f"**Aplicación en Derecho:** {step['appLaw']}")
 
 # --- Aplicación Principal ---
 
