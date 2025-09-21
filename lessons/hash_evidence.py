@@ -74,7 +74,7 @@ print(json.dumps(acta))""",
             "why": "Formato interoperable para archivar/compartir.",
             "appData": "APIs y data lakes.",
             "appLaw": "Adjuntar al expediente y verificar en juicio.",
-            "state": {"io": {"out": ["{\\"sha256\\": \\"9f2a…\\", \\"custodio\\": \\"Perito X\\"}"]}}
+            "state": {"io": {"out": ['{"sha256": "9f2a…", "custodio": "Perito X"}']}} # <-- LÍNEA CORREGIDA
         }
     ]
 }
