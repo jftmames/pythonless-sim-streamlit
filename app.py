@@ -1,10 +1,9 @@
 import streamlit as st
 
 # --- Importar Lecciones (Asegúrate de haber creado estos archivos) ---
-# Nota: Si un archivo no existe, esta línea dará error. Créalos primero.
 from lessons.hash_evidence import lesson as hash_lesson
-# from lessons.pow_nonce import lesson as pow_lesson
-# from lessons.mempool_queue import lesson as mempool_lesson
+from lessons.pow_nonce import lesson as pow_lesson
+from lessons.mempool_queue import lesson as mempool_lesson
 
 # --- Configuración de la Página ---
 st.set_page_config(layout="wide", page_title="Simulador Pythonless")
@@ -17,7 +16,7 @@ def render_code_view(code, active_line):
     formatted_code = ""
     for i, line in enumerate(lines, 1):
         if i == active_line:
-            # Resalta la línea activa añadiendo un ">" y un color sutil
+            # Resalta la línea activa
             formatted_code += f"{i:02d} > {line.strip()}\\n"
         else:
             formatted_code += f"{i:02d}   {line.strip()}\\n"
@@ -63,8 +62,8 @@ st.markdown("Aprende qué hace Python al ejecutar código… **sin ejecutar Pyth
 # Carga las lecciones que hayas creado
 lessons = {
     "Acta de Evidencia (Hash)": hash_lesson,
-    # "Prueba de Trabajo (PoW)": pow_lesson,
-    # "Mempool (Cola de Transacciones)": mempool_lesson,
+    "Prueba de Trabajo (PoW)": pow_lesson,
+    "Mempool (Cola de Transacciones)": mempool_lesson,
 }
 
 # Selector para elegir la lección
@@ -86,11 +85,11 @@ st.markdown("---")
 nav_cols = st.columns([1, 1, 8])
 if nav_cols[0].button("⬅️ Anterior"):
     st.session_state[session_key] = max(0, step_idx - 1)
-    st.experimental_rerun() # Recarga la app para reflejar el cambio
+    st.rerun() # <-- CORREGIDO
 
 if nav_cols[1].button("Siguiente ➡️"):
     st.session_state[session_key] = min(total_steps - 1, step_idx + 1)
-    st.experimental_rerun() # Recarga la app para reflejar el cambio
+    st.rerun() # <-- CORREGIDO
 
 nav_cols[2].write(f"**Paso {step_idx + 1} de {total_steps}**")
 
